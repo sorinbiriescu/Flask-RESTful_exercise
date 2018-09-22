@@ -10,10 +10,9 @@ from flask import Flask, jsonify
 from flask_cors import CORS
 from logzero import logger
 from flask_sqlalchemy import SQLAlchemy
-
+from flask_restful import Api
 
 db = SQLAlchemy()
-
 
 def create_app():
     app = Flask(__name__, instance_relative_config=True)
@@ -29,9 +28,13 @@ def create_app():
 
     from app.views import main_routes
     from app.api.resources import api_bp
-    
+
     app.register_blueprint(main_routes)
     app.register_blueprint(api_bp)
+
+    from app.api.resources import api,MessageItem, MessageList
+    api.add_resource(MessageList, '/message','/message/', endpoint="message_list")
+    api.add_resource(MessageItem, '/message/<int:id>', endpoint="message")
 
     return app
 
