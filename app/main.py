@@ -11,6 +11,7 @@ from flask_cors import CORS
 from logzero import logger
 from flask_sqlalchemy import SQLAlchemy
 
+
 db = SQLAlchemy()
 
 
@@ -27,6 +28,10 @@ def create_app():
     # Flask Blueprints: http://flask.pocoo.org/docs/latest/blueprints
 
     from app.views import main_routes
+    from app.api.resources import api_bp
+    
     app.register_blueprint(main_routes)
+    app.register_blueprint(api_bp)
+
     return app
 
