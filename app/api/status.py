@@ -9,9 +9,9 @@ def is_redirect(code):
 
 def is_client_error(code):
     return code >= 400 and code <= 499
-
+    
 def is_server_error(code):
-    return code >= 500 and code <= 599
+ return code >= 500 and code <= 599
 
 HTTP_100_CONTINUE = 100
 HTTP_101_SWITCHING_PROTOCOLS = 101
